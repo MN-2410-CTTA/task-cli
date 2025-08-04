@@ -29,8 +29,8 @@ You can:
 * Or clone it with Git:
 
 ```bash
-git clone https://github.com/your-username/task-tracker-cli.git
-cd task-tracker-cli
+git clone https://github.com/MN-2410-CTTA/task-cli.git
+cd task-cli
 ```
 
 ---
@@ -100,4 +100,4 @@ You don’t need to touch it — the script handles everything for you.
 
 ---
 
-Made with 💻 and Python by \[Your Name]
+Made with 💻 and Python by \anonymous
