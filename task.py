@@ -3,7 +3,6 @@ import os
 import json
 from datetime import datetime
 
-
 def show_help():
     print("Usage:")
     print("  python task.py add \"Task description\"")
@@ -14,18 +13,15 @@ def show_help():
     print("  python task.py mark-in-progress <id>")
     print("  python task.py list <status>  # todo | done | in-progress")
 
-
 def load_tasks():
     if os.path.exists("tasks.json"):
         with open("tasks.json", "r") as file:
             return json.load(file)
     return []
 
-
 def save_tasks(tasks):
     with open("tasks.json", "w") as file:
         json.dump(tasks, file, indent=2)
-
 
 def format_task(task, show_status=True):
     lines = [
@@ -36,7 +32,6 @@ def format_task(task, show_status=True):
     if show_status:
         lines.insert(1, f"    Status     : {task['status']}")
     return "\n".join(lines)
-
 
 def main():
     if len(sys.argv) < 2:
@@ -86,36 +81,71 @@ def main():
     elif command == "update":
         if len(sys.argv) < 4:
             print("Error: Missing task ID or new description.")
-        else:
-            task_id = sys.argv[2]
-            new_description = sys.argv[3]
-            print(f"[Placeholder] Update task {task_id} with: {new_description}")
+            return
+
+        task_id = int(sys.argv[2])
+        new_description = sys.argv[3]
+
+        tasks = load_tasks()
+        for task in tasks:
+            if task['id'] == task_id:
+                task['description'] = new_description
+                task['updatedAt'] = datetime.now().strftime('%Y-%m-%d %H:%M')
+                save_tasks(tasks)
+                print(f"Task {task_id} updated")
+                return
+        print(f"Task ID {task_id} not found")
 
     elif command == "delete":
         if len(sys.argv) < 3:
             print("Error: Missing task ID.")
-        else:
-            task_id = sys.argv[2]
-            print(f"[Placeholder] Delete task {task_id}")
+            return
+
+        task_id = int(sys.argv[2])
+        tasks = load_tasks()
+        for task in tasks:
+            if task['id'] == task_id:
+                tasks.remove(task)
+                save_tasks(tasks)
+                print(f"Task {task_id} deleted")
+                return
+        print(f"Task ID {task_id} not found")
 
     elif command == "mark-done":
         if len(sys.argv) < 3:
             print("Error: Missing task ID.")
-        else:
-            task_id = sys.argv[2]
-            print(f"[Placeholder] Mark task {task_id} as done")
+            return
+
+        task_id = int(sys.argv[2])
+        tasks = load_tasks()
+        for task in tasks:
+            if task['id'] == task_id:
+                task['status'] = 'done'
+                task['updatedAt'] = datetime.now().strftime('%Y-%m-%d %H:%M')
+                save_tasks(tasks)
+                print(f"Task {task_id} marked as done")
+                return
+        print(f"Task ID {task_id} not found")
 
     elif command == "mark-in-progress":
         if len(sys.argv) < 3:
             print("Error: Missing task ID.")
-        else:
-            task_id = sys.argv[2]
-            print(f"[Placeholder] Mark task {task_id} as in-progress")
+            return
+
+        task_id = int(sys.argv[2])
+        tasks = load_tasks()
+        for task in tasks:
+            if task['id'] == task_id:
+                task['status'] = 'in-progress'
+                task['updatedAt'] = datetime.now().strftime('%Y-%m-%d %H:%M')
+                save_tasks(tasks)
+                print(f"Task {task_id} marked as in progress")
+                return
+        print(f"Task ID {task_id} not found")
 
     else:
         print(f"Unknown command: {command}")
         show_help()
-
 
 if __name__ == "__main__":
     main()
