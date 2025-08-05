@@ -1,103 +1,109 @@
-# ✅ Task Tracker CLI
+# 📝 Task CLI — Command-Line Task Manager in Python
 
-A simple command-line task manager written in Python.
+A simple and efficient command-line tool to manage tasks (to-dos, in-progress, done) using Python and JSON for local storage.
 
-Track your tasks with clean output, simple commands, and no external dependencies.
+## 📦 Features
 
----
-
-## 🚀 Installation
-
-### 1. Make sure you have Python installed
-
-You can check by running this in your terminal or command prompt:
-
-```bash
-python --version
-```
-
-If it shows something like `Python 3.10.6`, you're good.
-If not, download Python here: [https://www.python.org/downloads/](https://www.python.org/downloads/)
+- Add, update, and delete tasks
+- Mark tasks as "done" or "in-progress"
+- Filter and list tasks by status
+- Stores tasks in a persistent `tasks.json` file
+- Easy to use, lightweight, and dependency-free
 
 ---
 
-### 2. Download this project
+## 🚀 Getting Started
 
-You can:
+### 🔧 Requirements
+- Python 3.7 or higher
 
-* Click the green **"Code"** button above and choose **"Download ZIP"**
-* Or clone it with Git:
-
+### 📥 Installation
+Clone the repository:
 ```bash
-git clone https://github.com/MN-2410-CTTA/task-cli.git
+git clone https://github.com/<your-username>/task-cli.git
 cd task-cli
 ```
 
----
-
-## 🛠️ How to Use
-
-You run everything from your terminal using this command pattern:
-
+(Optional) Make the script executable:
 ```bash
-python task.py <command>
+chmod +x task.py
 ```
-
-### ✅ Add a Task
-
-```bash
-python task.py add "Do my homework"
-```
-
-This will create a new task with a status of `todo`.
 
 ---
 
-### 📋 List All Tasks
+## 📌 Usage
 
 ```bash
+python task.py <command> [args]
+```
+
+### Commands
+
+| Command | Description |
+|--------|-------------|
+| `add "description"` | Add a new task |
+| `list` | List all tasks |
+| `list <status>` | List tasks by status: `todo`, `done`, `in-progress` |
+| `update <id> "new description"` | Update a task's description |
+| `delete <id>` | Delete a task by ID |
+| `mark-done <id>` | Mark a task as done |
+| `mark-in-progress <id>` | Mark a task as in-progress |
+
+---
+
+### ✅ Example
+```bash
+python task.py add "Finish documentation"
 python task.py list
+python task.py update 1 "Finish documentation v1"
+python task.py mark-in-progress 1
+python task.py mark-done 1
+python task.py delete 1
 ```
 
-Shows all tasks you've added, including their status and timestamps.
-
 ---
 
-### 🔍 List Tasks by Status
+## 🗃 Data Storage
 
-You can filter your tasks like this:
-
-```bash
-python task.py list todo
-python task.py list in-progress
-python task.py list done
+Tasks are saved in a `tasks.json` file using the following format:
+```json
+[
+  {
+    "id": 1,
+    "description": "Example task",
+    "status": "todo",
+    "createdAt": "2025-08-05 12:30",
+    "updatedAt": "2025-08-05 12:30"
+  }
+]
 ```
 
-This only shows the tasks with that status.
+---
+
+## 🔖 Versioning
+
+This project follows [Semantic Versioning](https://semver.org/). See the [Releases](https://github.com/<your-username>/task-cli/releases) page for available versions.
 
 ---
 
-## 📁 Where are tasks saved?
+## 📄 License
 
-Your tasks are saved in a file called `tasks.json` in the same folder.
-You don’t need to touch it — the script handles everything for you.
-
----
-
-## 📌 Current Limitations
-
-* You can't yet update or delete tasks.
-* You can't mark a task as done or in-progress yet.
-* These features are coming in the next update!
+MIT License. See [LICENSE](LICENSE) for details.
 
 ---
 
-## ✨ Coming Soon
+## ✨ Future Improvements (Planned)
 
-* `mark-done`, `mark-in-progress`
-* `update`, `delete`, and task ID validation
-* Better error messages
+- Task priorities
+- Due dates & deadlines
+- Search & filter by keyword
+- Export to CSV
+- Reminder notifications
 
 ---
 
-Made with 💻 and Python by \anonymous
+## 👤 Author
+
+**Your Name** — [@your-handle](https://github.com/<your-username>)
+
+Feel free to submit issues or contribute!
