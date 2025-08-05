@@ -20,7 +20,7 @@ A simple and efficient command-line tool to manage tasks (to-dos, in-progress, d
 ### 📥 Installation
 Clone the repository:
 ```bash
-git clone https://github.com/<your-username>/task-cli.git
+git clone https://github.com/MN-2410-CTTA/task-cli.git
 cd task-cli
 ```
 
